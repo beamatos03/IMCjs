@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULADORA</title>
+</head>
+<body>
+    <div id="content">
+    <h2>CALCULADORA BÁSICA</h2>
+    <form class="form">
+<div id="num">
+            <input class="txt" type="text" id="num1">
+            <input class="txt" type="text" id="num2">
+        </div>
+            <div id="btns">
+            <div class="linha">
+                <div class="btn">
+                    <button type="button" onclick="somar()">+</button>
+                </div>
+                <div class="btn">
+                    <button type="button" onclick="subtrair()">-</button>
+                </div>
+                <div class="btn">
+                    <button type="button" class="potencia" onclick="potencia()">^</button>
+                </div>
+            </div>
+            <div class="linha">
+                <div class="btn">
+                    <button type="button" onclick="multiplicar()">*</button>
+                </div>
+                <div class="btn">
+                    <button type="button"  onclick="dividir()">÷</button>
+                </div>
+                <div class="btn">
+                    <button type="reset" class="clear">C</button>
+                </div>
+            </div>
+        <div class="linha">
+            <input class="txt" type="text" readonly id="result">
+        </div>
+    </div>
+        </div>
+    </form>
+    <script>
+
+        function somar(){
+            var resp, num1, num2;
+            num1 = parseFloat(document.getElementById("num1").value); 
+            num2 = parseFloat(document.getElementById("num2").value);
+
+            resp = num1 + num2;
+
+            document.getElementById("result").value = num1 + " + " + num2 + " = " + resp;
+            
+        }
+        function subtrair(){
+            var num1, num2, resp;
+            num1 = parseFloat(document.getElementById("num1").value); 
+            num2 = parseFloat(document.getElementById("num2").value);
+
+            resp = num1 - num2;
+
+            document.getElementById("result").value = num1 + " - " + num2 + " = " + resp;
+            
+        }
+
+        function multiplicar(){
+            var resp, num1, num2;
+            num1 = parseFloat(document.getElementById("num1").value); 
+            num2 = parseFloat(document.getElementById("num2").value);
+
+            resp = num1*num2;
+
+            document.getElementById("result").value = num1 + " * " + num2 + " = " + resp;
+            
+        }
+
+        function dividir(){
+            var resp, num1, num2;
+            num1 = parseFloat(document.getElementById("num1").value); 
+            num2 = parseFloat(document.getElementById("num2").value);
+            resp = num1/num2;
+
+            document.getElementById("result").value = num1 + " / " + num2 + " = " + resp;
+            
+        }
+
+        function potencia(){
+            var resp, num1, num2, i=1;
+            num1 = parseFloat(document.getElementById("num1").value); 
+            num2 = parseFloat(document.getElementById("num2").value);
+            resp = num1; 
+
+            while(i<num2){
+                resp = resp*num1;
+                i++;
+            }
+
+            document.getElementById("result").value = num1 + " ^ " + num2 + " = " + resp;
+        }
+
+    </script>
+</body>
+</html>
