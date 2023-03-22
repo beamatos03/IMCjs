@@ -4,102 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CALCULADORA</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <title>IMC</title>
 </head>
 <body>
-    <div id="content">
-    <h2>CALCULADORA BÁSICA</h2>
-    <form class="form">
-<div id="num">
-            <input class="txt" type="text" id="num1">
-            <input class="txt" type="text" id="num2">
+    <div id="container">
+        <div id="title" class="side">
+            <h2>IMC</h2>
+            <p>O índice de massa corporal é uma medida reconhecida como padrão internacional utilizado para calcular se uma pessoa está no peso ideal.</p>
         </div>
+        <div id="calc" class="side">
+        <form class="form">
+            <h2>Calculo do IMC</h2>
+            <div class="input">
+                <label>Altura</label>
+                <input class="txt" type="text" id="altura">
+            </div>
+
+            <div class="input">
+                <label>Peso</label>
+                <input class="txt" type="text" id="peso">
+            </div>
+
             <div id="btns">
             <div class="linha">
                 <div class="btn">
-                    <button type="button" onclick="somar()">+</button>
-                </div>
-                <div class="btn">
-                    <button type="button" onclick="subtrair()">-</button>
-                </div>
-                <div class="btn">
-                    <button type="button" class="potencia" onclick="potencia()">^</button>
-                </div>
-            </div>
-            <div class="linha">
-                <div class="btn">
-                    <button type="button" onclick="multiplicar()">*</button>
-                </div>
-                <div class="btn">
-                    <button type="button"  onclick="dividir()">÷</button>
-                </div>
-                <div class="btn">
-                    <button type="reset" class="clear">C</button>
-                </div>
-            </div>
-        <div class="linha">
-            <input class="txt" type="text" readonly id="result">
+                    <button type="button" onclick="calc()">CALCULAR</button>
+            </div></div>
+        <div class="coluna">
+                <label><b>Menor que 18,5:</b> Magreza</label>
+                <label><b>18,5 a 24,9:</b> Normal</label>
+                <label><b>25 a 29,9:</b> Sobrepeso</label>
+                <label><b>30 a 34,9:</b> Obesidade grau I</label>
+                <label><b>35 a 39,9:</b> Obesidade grau II</label>
+                <label><b>Maior que 40:</b> Obesidade grau III</label>         
         </div>
     </div>
+        <div class="linha">
+            <label>IMC: </label><input class="txt" type="text" readonly id="result" class="read">
         </div>
+        <div class="linha">
+            <label>Estado: </label><input class="txt" type="text" readonly id="estado" class="read">
+        </div>
+    </div>   
     </form>
-    <script>
+</div> 
+</div>
+    <script>   
 
-        function somar(){
-            var resp, num1, num2;
-            num1 = parseFloat(document.getElementById("num1").value); 
-            num2 = parseFloat(document.getElementById("num2").value);
+        function calc(){
+            var peso, altura, imc, resultado;
+            peso = parseFloat(document.getElementById("peso").value); 
+            altura = parseFloat(document.getElementById("altura").value);
+            imc = peso / (altura*altura);
 
-            resp = num1 + num2;
+            if(imc < 18.5){
+                resultado = "Magreza";
+            }
+            else if(imc <= 24.9){
+                resultado = "Normal";
+            }
+            else if(imc <= 29.9){
+                resultado = "Sobrepeso";
+            }
+            else if(imc <= 34.9){
+                resultado = "Obesidade grau I";
+            }
+            else if(imc <= 39.9){
+                resultado = "Obesidade grau II";
+            }
+            else if(imc > 40){
+                resultado = "Obesidade grau III";
+            }
+            else{
+                resultado = "Erro. Insira valores válidos";
+                getElementByTagName("form").reset();
 
-            document.getElementById("result").value = num1 + " + " + num2 + " = " + resp;
-            
-        }
-        function subtrair(){
-            var num1, num2, resp;
-            num1 = parseFloat(document.getElementById("num1").value); 
-            num2 = parseFloat(document.getElementById("num2").value);
-
-            resp = num1 - num2;
-
-            document.getElementById("result").value = num1 + " - " + num2 + " = " + resp;
-            
-        }
-
-        function multiplicar(){
-            var resp, num1, num2;
-            num1 = parseFloat(document.getElementById("num1").value); 
-            num2 = parseFloat(document.getElementById("num2").value);
-
-            resp = num1*num2;
-
-            document.getElementById("result").value = num1 + " * " + num2 + " = " + resp;
-            
-        }
-
-        function dividir(){
-            var resp, num1, num2;
-            num1 = parseFloat(document.getElementById("num1").value); 
-            num2 = parseFloat(document.getElementById("num2").value);
-            resp = num1/num2;
-
-            document.getElementById("result").value = num1 + " / " + num2 + " = " + resp;
-            
-        }
-
-        function potencia(){
-            var resp, num1, num2, i=1;
-            num1 = parseFloat(document.getElementById("num1").value); 
-            num2 = parseFloat(document.getElementById("num2").value);
-            resp = num1; 
-
-            while(i<num2){
-                resp = resp*num1;
-                i++;
             }
 
-            document.getElementById("result").value = num1 + " ^ " + num2 + " = " + resp;
+            document.getElementById("result").value = "Seu IMC é " + imc.toFixed(3);
+            document.getElementById("estado").value = resultado;
+            
         }
+        
 
     </script>
 </body>
